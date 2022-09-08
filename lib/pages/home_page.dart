@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course/models/catalog.dart';
+import 'package:flutter_course/widget/item_widget.dart';
 
 import '../widget/drawer.dart';
 
@@ -7,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dummyList = List.generate(50, (index) => catalogModel.Items[0]);
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.white,
@@ -17,10 +20,15 @@ class HomePage extends StatelessWidget {
           // style: TextStyle(fontSize: 20),
         ),
       ),
-      body: Center(
-        child: Container(
-          child: Text("Welcome to 3 days of flutter"),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: ListView.builder(
+            itemCount: dummyList.length,
+            itemBuilder: (context, index) {
+              return ItemWidget(
+                item: dummyList[index],
+              );
+            }),
       ),
       drawer: MyDrawer(),
     );
