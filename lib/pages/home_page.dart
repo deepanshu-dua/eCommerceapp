@@ -54,13 +54,35 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: (catalogModel.Items != null && catalogModel.Items!.isNotEmpty)
-            ? ListView.builder(
+            // ? GridView.builder(
+            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 2),
+            //     itemBuilder: (context, index) {
+            //       final item = catalogModel.Items![index];
+            //       return GridTile(child: Image.network(item.image));
+            //     },
+            //     itemCount: catalogModel.Items!.length,
+            //   )
+
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 17,
+                    crossAxisSpacing: 17),
                 itemCount: catalogModel.Items!.length,
                 itemBuilder: (context, index) {
                   return ItemWidget(
                     item: catalogModel.Items![index],
                   );
                 })
+            // ? ListView.builder(
+            //     itemCount: catalogModel.Items!.length,
+            //     itemBuilder: (context, index) {
+            //       return ItemWidget(
+            //
+            //     item: catalogModel.Items![index],
+            //       );
+            //     })
             : Center(
                 child: CircularProgressIndicator(),
               ),
