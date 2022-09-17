@@ -4,6 +4,7 @@ import 'package:flutter_course/pages/login.dart';
 import 'package:flutter_course/themes.dart';
 import 'package:flutter_course/utilities/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
+// @dart= 2.9
 
 void main() {
   runApp(MyApp());
