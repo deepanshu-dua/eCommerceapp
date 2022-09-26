@@ -26,8 +26,8 @@ class HomeDetailsPage extends StatelessWidget {
               backgroundColor: MaterialStateProperty.all(MyTheme.darkBluish),
               shape: MaterialStateProperty.all(StadiumBorder()),
             ),
-            child: "Buy".text.xl.make(),
-          ).wh(100, 50)
+            child: "Add to cart".text.xl.make(),
+          ).wh(130, 50)
         ],
       ).p32(),
       body: SafeArea(
@@ -52,6 +52,14 @@ class HomeDetailsPage extends StatelessWidget {
                   children: [
                     catalog.name.text.xl4.color(MyTheme.darkBluish).bold.make(),
                     catalog.desc.text.xl.make(),
+                    10.heightBox,
+                    "About this item Feel a little closer with fast 5G The amazing camera that just keeps getting better A great view. No matter where you are The amazing camera that just keeps getting better Built for security, inside and out"
+                        .text
+                        .center
+                        .textStyle(context.captionStyle)
+                        .lg
+                        .make()
+                        .p8()
                   ],
                 ).py64(),
               ),
