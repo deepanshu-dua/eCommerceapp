@@ -6,6 +6,7 @@ import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_course/models/cart.dart';
 import 'package:flutter_course/pages/home_details.dart';
 import 'package:flutter_course/utilities/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_course/models/catalog.dart';
 import 'package:flutter_course/themes.dart';
 import 'package:flutter_course/widget/item_widget.dart';
 
+import '../widget/add_to_cart.dart';
 import '../widget/drawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -99,7 +101,7 @@ class CatalogList extends StatelessWidget {
         shrinkWrap: true,
         itemCount: catalogModel.Items!.length,
         itemBuilder: (context, index) {
-          final catalog = catalogModel.getByPosition(index);
+          final catalog = catalogModel.Items![index];
           return InkWell(
               onTap: () => Navigator.push(
                     context,
@@ -145,14 +147,7 @@ class CatalogItem extends StatelessWidget {
               buttonPadding: Vx.mH4,
               children: [
                 "\$${catalog.price}".text.bold.make(),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(MyTheme.darkBluish),
-                      shape: MaterialStateProperty.all(StadiumBorder()),
-                    ),
-                    child: "Add to Cart".text.make())
+                AddToCart(catalog: catalog)
               ],
             )
           ],
@@ -161,6 +156,8 @@ class CatalogItem extends StatelessWidget {
     )).white.rounded.square(150).make().py16();
   }
 }
+
+
 
 
       // appBar: AppBar(
