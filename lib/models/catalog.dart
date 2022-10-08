@@ -1,11 +1,6 @@
 import 'package:flutter/foundation.dart';
 
 class catalogModel {
-  static final catModel = catalogModel._internal();
-
-  catalogModel._internal();
-
-  factory catalogModel() => catModel;
   static List<Item>? Items = null;
 
   Item getById(int id) =>
