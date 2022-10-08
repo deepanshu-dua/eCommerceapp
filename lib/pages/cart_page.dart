@@ -49,14 +49,7 @@ class _CartTotal extends StatelessWidget {
   }
 }
 
-class _CartList extends StatefulWidget {
-  const _CartList({Key? key}) : super(key: key);
-
-  @override
-  State<_CartList> createState() => __CartListState();
-}
-
-class __CartListState extends State<_CartList> {
+class _CartList extends StatelessWidget {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
@@ -70,7 +63,6 @@ class __CartListState extends State<_CartList> {
                     icon: Icon(Icons.remove_circle_outline),
                     onPressed: () {
                       _cart.remove(_cart.items![index]);
-                      setState(() {});
                     },
                   ),
                   title: _cart.items![index].name.text.make(),
