@@ -3,6 +3,8 @@ import 'package:flutter_course/models/cart.dart';
 import 'package:flutter_course/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../core/store.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -29,11 +31,20 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        "\$${_cart.totalPrice}".text.xl5.color(context.accentColor).make(),
+        VxConsumer(
+            notifications: {},
+            mutations: {RemoveMutation},
+            builder: (BuildContext, dynamic, vxstatus) {
+              return "\$${_cart.totalPrice}"
+                  .text
+                  .xl5
+                  .color(context.accentColor)
+                  .make();
+            }),
         30.widthBox,
         ElevatedButton(
           onPressed: () {
@@ -50,9 +61,10 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatelessWidget {
-  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items!.isEmpty
         ? "Nothing to show".text.xl3.makeCentered()
         : ListView.builder(
@@ -61,9 +73,9 @@ class _CartList extends StatelessWidget {
                   leading: Icon(Icons.done),
                   trailing: IconButton(
                     icon: Icon(Icons.remove_circle_outline),
-                    onPressed: () {
-                      _cart.remove(_cart.items![index]);
-                    },
+                    onPressed: () =>
+                        // _cart.remove(_cart.items![index]);
+                        RemoveMutation(_cart.items![index]),
                   ),
                   title: _cart.items![index].name.text.make(),
                 ));
