@@ -27,10 +27,9 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
-  const _CartTotal({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    print("rebuild happened");
     final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
